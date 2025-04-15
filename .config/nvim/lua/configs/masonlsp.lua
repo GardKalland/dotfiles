@@ -1,6 +1,16 @@
 local M = {}
 
 function M.setup()
+  vim.diagnostic.config {
+    virtual_text = {
+      spacing = 4,
+      prefix = "?", -- or "?", "?", "?", ">>"
+    },
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+  }
   -- Set up Mason
   require("mason").setup {
     ui = {
