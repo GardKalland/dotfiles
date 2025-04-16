@@ -10,10 +10,17 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 map("n", "<S-h>", function()
-  require("nvchad.tabufline").prev()
+  local ok, tabufline = pcall(require, "nvchad.tabufline")
+  if ok and vim.fn.buflisted(vim.fn.bufnr()) == 1 then
+    tabufline.prev()
+  end
 end, { desc = "Previous buffer" })
+
 map("n", "<S-l>", function()
-  require("nvchad.tabufline").next()
+  local ok, tabufline = pcall(require, "nvchad.tabufline")
+  if ok and vim.fn.buflisted(vim.fn.bufnr()) == 1 then
+    tabufline.next()
+  end
 end, { desc = "Next buffer" })
 map("n", "<leader>bd", function()
   require("nvchad.tabufline").close_buffer()
@@ -32,11 +39,29 @@ map("n", "<leader>br", function()
 end, { desc = "Close buffers to the right" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
--- Better pane navigation
-map("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
-map("n", "<C-j>", "<C-w>j", { desc = "Move to below split" })
-map("n", "<C-k>", "<C-w>k", { desc = "Move to above split" })
-map("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
+-- Harpoon keybindings
+local harpoon = require "harpoon"
+
+vim.keymap.set("n", "<leader>ha", function()
+  harpoon:list():add()
+end, { desc = "Add file to Harpoon" })
+vim.keymap.set("n", "<leader>hm", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Harpoon menu" })
+
+-- Navigate directly to files
+vim.keymap.set("n", "<C-q>", function()
+  harpoon:list():select(1)
+end, { desc = "Go to file 1" })
+vim.keymap.set("n", "<C-e>", function()
+  harpoon:list():select(2)
+end, { desc = "Go to file 2" })
+vim.keymap.set("n", "<C-t>", function()
+  harpoon:list():select(3)
+end, { desc = "Go to file 3" })
+vim.keymap.set("n", "<C-p>", function()
+  harpoon:list():select(5)
+end, { desc = "Go to file 4" })
 
 -- -- Terminal mappings
 map("n", "<leader>ts", function()
@@ -46,6 +71,12 @@ end, { desc = "Open horizontal terminal" })
 map("n", "<leader>tv", function()
   require("nvchad.term").new { pos = "vsp", cmd = "neofetch" }
 end, { desc = "Open vertical terminal with neofetch" })
+
+map("n", "<C-h>", ":TmuxNavigateLeft<CR>", { noremap = true, silent = true })
+map("n", "<C-j>", ":TmuxNavigateDown<CR>", { noremap = true, silent = true })
+map("n", "<C-k>", ":TmuxNavigateUp<CR>", { noremap = true, silent = true })
+map("n", "<C-l>", ":TmuxNavigateRight<CR>", { noremap = true, silent = true })
+map("n", "<C-\\>", ":TmuxNavigatePrevious<CR>", { noremap = true, silent = true })
 
 -- LSP Configs
 map("n", "<leader>rn", function()
