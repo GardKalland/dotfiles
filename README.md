@@ -40,7 +40,6 @@ First, check that the dotfiles repo are in the $HOME directory
 
 ```
 git clone git@github.com/GardKalland/dotfiles.git
-
 ```
 
 ```
