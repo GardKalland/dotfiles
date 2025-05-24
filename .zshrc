@@ -59,7 +59,7 @@ precmd() {
 # Dotfiles alias
 alias dotfiles='~/ --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # pnpm
-export PNPM_HOME="/home/hallo/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
