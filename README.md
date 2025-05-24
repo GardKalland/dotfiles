@@ -12,14 +12,12 @@ For Arch:
 
 ```
 pacman -S git
-
 ```
 
 For mac (with homebrew):
 
 ```
 brew install git
-
 ```
 
 ### Stow
@@ -28,14 +26,12 @@ For Arch:
 
 ```
 pacman -S stow
-
 ```
 
 For mac (with homebrew):
 
 ```
 brew install stow
-
 ```
 
 ## Installation
@@ -61,15 +57,17 @@ stow .
 
 ### Adding
 
-You need to copy the directory you want into the dotfiles repo. _The configs needs to match the systems config, with layers_
+You need to copy the directory you want into the dotfiles repo. _The configs needs to match the systems config paths_
 
 To add new do (you are inside the dotfiles repo):
 
 `cp ~/.[path to file] [same path and name] `
 
-Then when added do:
+Then when added, do:
 
-`stow .`
+```
+stow .
+```
 
 This will create symlinks from the original path into the dotfiles repo
 
@@ -79,9 +77,11 @@ If you have conflicts when adding symlinks then you have two options:
 
 1. Change the name of the file in the system:
 
-`mv ~/.[path to file] ~/.[path to file(change name)]`
+```
+mv ~/.[path to file] ~/.[path to file(change name)]
+```
 
-2. Use stow adopt to fix it.
+2. Use stow adopt to fix it inside the dotfiles.
 
 ```
 stow --adopt .
