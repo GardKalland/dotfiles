@@ -70,16 +70,23 @@ esac
 ###### USING HINTS ON ARCH, HOMEROW ON MAC
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
-    # Hints mousless thingy
-    # Start hints daemon at login if not already running
-    if ! pgrep -x "hintsd" > /dev/null; then
-      nohup hintsd >/dev/null 2>&1 &
-    fi
+    #### Hints mousless thingy ####
+    if ! command -v hints >/dev/null 2>&1; then
+      echo 'Hints is NOT installed'
+      echo 'Download it here:'
+      echo 'https://github.com/AlfredoSequeida/hints'
+      
+    else
+      # Start hints daemon at login if not already running
+      if ! pgrep -x "hintsd" > /dev/null; then
+        nohup hintsd >/dev/null 2>&1 &
+      fi
 
-    export ACCESSIBILITY_ENABLED=1
-    export GTK_MODULES=gail:atk-bridge
-    export OOO_FORCE_DESKTOP=gnome
-    export GNOME_ACCESSIBILITY=1
-    export QT_ACCESSIBILITY=1
-    export QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+      export ACCESSIBILITY_ENABLED=1
+      export GTK_MODULES=gail:atk-bridge
+      export OOO_FORCE_DESKTOP=gnome
+      export GNOME_ACCESSIBILITY=1
+      export QT_ACCESSIBILITY=1
+      export QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+    fi
 fi
