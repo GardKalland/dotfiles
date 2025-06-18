@@ -1,5 +1,4 @@
 return {
-  -- UI components used by noice
   { "MunifTanjim/nui.nvim" },
 
   -- Noice: floating command palette and LSP UI
@@ -13,7 +12,7 @@ return {
     opts = {
       cmdline = {
         enabled = true,
-        view = "cmdline_popup", -- ?? centered popup
+        view = "cmdline_popup",
       },
       views = {
         cmdline_popup = {

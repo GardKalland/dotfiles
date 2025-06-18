@@ -5,6 +5,6 @@ return {
     config = function()
       require "configs.copilot"
     end,
-    lazy = false,
+    lazy = true,
 },
 }

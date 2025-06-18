@@ -12,7 +12,7 @@ local options = {
     css = { "prettier" },
     scss = { "prettier" },
     markdown = { "prettier" },
-    lua = { "stylua" }, -- keep your stylua
+    lua = { "stylua" },
   },
 
   format_on_save = {
